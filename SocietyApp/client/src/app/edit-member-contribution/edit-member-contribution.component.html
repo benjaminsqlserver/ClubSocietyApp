@@ -1,0 +1,72 @@
+<rz-content #content1 container="main">
+  <div [ngStyle]="{}" class="row">
+    <div class="col-md-9">
+      <rz-label #closeLabel [style]="{'fontWeight': 'bold'}" text="Item no longer available." *ngIf="!canEdit">
+      </rz-label>
+    </div>
+    <div class="col-md-3">
+      <rz-button #closeButton buttonStyle="secondary" [style]="{'marginBottom': '20px'}" text="Close" *ngIf="!canEdit" (click)="closeButtonClick($event)">
+      </rz-button>
+    </div>
+  </div>
+  <div [ngStyle]="{}" class="row">
+    <div class="col-md-9">
+      <rz-label #label0 [style]="{'fontWeight': 'bold'}" text="Another user has made conflicting changes to one or more of the fields you have modified. Please reload." *ngIf="hasChanges">
+      </rz-label>
+    </div>
+    <div class="col-md-3">
+      <rz-button #button0 buttonStyle="secondary" icon="autorenew" [style]="{'marginBottom': '20px'}" text="Reload" *ngIf="hasChanges" (click)="button0Click($event)">
+      </rz-button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <rz-template-form #form0 (submit)="form0Submit($event)">
+        <div [ngStyle]="{'marginBottom': '1rem'}" class="row">
+          <div class="col-md-3">
+            <rz-label #memberIdLabel component="MemberID" [style]="{'width': '100%'}" text="Member">
+            </rz-label>
+          </div>
+          <div class="col-md-9">
+            <rz-dropdown #memberId [data]="getMemberListProcsResult" emptyFilterText="No results found" multipleItemsSelectedText="{0} items selected" placeholder="Choose Member" [style]="{'display': 'block', 'width': '100%'}" textProperty="FullName" [(ngModel)]="membercontribution && membercontribution.MemberID" valueProperty="MemberID" name="MemberID">
+            </rz-dropdown>
+            <rz-required-validator #memberIdRequiredValidator [component]="memberId" [style]="{'position': 'absolute'}" text="Member is required">
+            </rz-required-validator>
+          </div>
+        </div>
+        <div [ngStyle]="{'marginBottom': '1rem'}" class="row">
+          <div class="col-md-3">
+            <rz-label #contributionDateLabel component="ContributionDate" [style]="{'width': '100%'}" text="Contribution Date">
+            </rz-label>
+          </div>
+          <div class="col-md-9">
+            <rz-datepicker #contributionDate [style]="{'display': 'block', 'width': '100%'}" [(ngModel)]="membercontribution && membercontribution.ContributionDate" name="ContributionDate">
+            </rz-datepicker>
+            <rz-required-validator #contributionDateRequiredValidator [component]="contributionDate" [style]="{'position': 'absolute'}" text="ContributionDate is required">
+            </rz-required-validator>
+          </div>
+        </div>
+        <div [ngStyle]="{'marginBottom': '1rem'}" class="row">
+          <div class="col-md-3">
+            <rz-label #amountContributedLabel component="AmountContributed" [style]="{'width': '100%'}" text="Amount Contributed">
+            </rz-label>
+          </div>
+          <div class="col-md-9">
+            <rz-numeric #amountContributed [style]="{'display': 'block', 'width': '100%'}" [(ngModel)]="membercontribution && membercontribution.AmountContributed" name="AmountContributed">
+            </rz-numeric>
+            <rz-required-validator #amountContributedRequiredValidator [component]="amountContributed" [style]="{'position': 'absolute'}" text="AmountContributed is required">
+            </rz-required-validator>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col offset-sm-3">
+            <rz-button #button3 buttonStyle="primary" buttonType="submit" icon="save" text="Save">
+            </rz-button>
+            <rz-button #button4 buttonStyle="light" [style]="{'marginLeft': '1rem'}" text="Cancel" (click)="button4Click($event)">
+            </rz-button>
+          </div>
+        </div>
+      </rz-template-form>
+    </div>
+  </div>
+</rz-content>

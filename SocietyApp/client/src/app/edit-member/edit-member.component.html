@@ -1,0 +1,168 @@
+<rz-content #content1 container="main">
+  <div [ngStyle]="{}" class="row">
+    <div class="col-md-9">
+      <rz-label #closeLabel [style]="{'fontWeight': 'bold'}" text="Item no longer available." *ngIf="!canEdit">
+      </rz-label>
+    </div>
+    <div class="col-md-3">
+      <rz-button #closeButton buttonStyle="secondary" [style]="{'marginBottom': '20px'}" text="Close" *ngIf="!canEdit" (click)="closeButtonClick($event)">
+      </rz-button>
+    </div>
+  </div>
+  <div [ngStyle]="{}" class="row">
+    <div class="col-md-9">
+      <rz-label #label0 [style]="{'fontWeight': 'bold'}" text="Another user has made conflicting changes to one or more of the fields you have modified. Please reload." *ngIf="hasChanges">
+      </rz-label>
+    </div>
+    <div class="col-md-3">
+      <rz-button #button0 buttonStyle="secondary" icon="autorenew" [style]="{'marginBottom': '20px'}" text="Reload" *ngIf="hasChanges" (click)="button0Click($event)">
+      </rz-button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <rz-template-form #form0 (submit)="form0Submit($event)">
+        <div [ngStyle]="{'marginBottom': '1rem'}" class="row">
+          <div class="col-md-3">
+            <rz-label #firstNameLabel component="FirstName" [style]="{'width': '100%'}" text="First Name">
+            </rz-label>
+          </div>
+          <div class="col-md-9">
+            <rz-textbox #firstName [maxLength]="50" [style]="{'display': 'block', 'width': '100%'}" [(ngModel)]="member && member.FirstName" name="FirstName">
+            </rz-textbox>
+            <rz-required-validator #firstNameRequiredValidator [component]="firstName" [style]="{'position': 'absolute'}" text="FirstName is required">
+            </rz-required-validator>
+          </div>
+        </div>
+        <div [ngStyle]="{'marginBottom': '1rem'}" class="row">
+          <div class="col-md-3">
+            <rz-label #middleNameLabel component="MiddleName" [style]="{'width': '100%'}" text="Middle Name">
+            </rz-label>
+          </div>
+          <div class="col-md-9">
+            <rz-textbox #middleName [maxLength]="50" [style]="{'width': '100%'}" [(ngModel)]="member && member.MiddleName" name="MiddleName">
+            </rz-textbox>
+          </div>
+        </div>
+        <div [ngStyle]="{'marginBottom': '1rem'}" class="row">
+          <div class="col-md-3">
+            <rz-label #surnameLabel component="Surname" [style]="{'width': '100%'}" text="Surname">
+            </rz-label>
+          </div>
+          <div class="col-md-9">
+            <rz-textbox #surname [maxLength]="50" [style]="{'display': 'block', 'width': '100%'}" [(ngModel)]="member && member.Surname" name="Surname">
+            </rz-textbox>
+            <rz-required-validator #surnameRequiredValidator [component]="surname" [style]="{'position': 'absolute'}" text="Surname is required">
+            </rz-required-validator>
+          </div>
+        </div>
+        <div [ngStyle]="{'marginBottom': '1rem'}" class="row">
+          <div class="col-md-3">
+            <rz-label #genderIdLabel component="GenderID" [style]="{'width': '100%'}" text="Gender">
+            </rz-label>
+          </div>
+          <div class="col-md-9">
+            <rz-dropdown #genderId [allowClear]="true" [allowFiltering]="true" [data]="getGendersResult" emptyFilterText="No results found" multipleItemsSelectedText="{0} items selected" placeholder="Choose Gender" [style]="{'display': 'block', 'width': '100%'}" textProperty="GenderName" [(ngModel)]="member && member.GenderID" valueProperty="GenderID" name="GenderID">
+            </rz-dropdown>
+            <rz-required-validator #genderIdRequiredValidator [component]="genderId" [style]="{'position': 'absolute'}" text="Gender is required">
+            </rz-required-validator>
+          </div>
+        </div>
+        <div [ngStyle]="{'marginBottom': '1rem'}" class="row">
+          <div class="col-md-3">
+            <rz-label #dateOfBirthLabel component="DateOfBirth" [style]="{'width': '100%'}" text="Date Of Birth">
+            </rz-label>
+          </div>
+          <div class="col-md-9">
+            <rz-datepicker #dateOfBirth [style]="{'width': '100%'}" [(ngModel)]="member && member.DateOfBirth" name="DateOfBirth">
+            </rz-datepicker>
+          </div>
+        </div>
+        <div [ngStyle]="{'marginBottom': '1rem'}" class="row">
+          <div class="col-md-3">
+            <rz-label #residentialAddressLabel component="ResidentialAddress" [style]="{'width': '100%'}" text="Residential Address">
+            </rz-label>
+          </div>
+          <div class="col-md-9">
+            <rz-textbox #residentialAddress [style]="{'display': 'block', 'width': '100%'}" [(ngModel)]="member && member.ResidentialAddress" name="ResidentialAddress">
+            </rz-textbox>
+            <rz-required-validator #residentialAddressRequiredValidator [component]="residentialAddress" [style]="{'position': 'absolute'}" text="ResidentialAddress is required">
+            </rz-required-validator>
+          </div>
+        </div>
+        <div [ngStyle]="{'marginBottom': '1rem'}" class="row">
+          <div class="col-md-3">
+            <rz-label #officeAddressLabel component="OfficeAddress" [style]="{'width': '100%'}" text="Office Address">
+            </rz-label>
+          </div>
+          <div class="col-md-9">
+            <rz-textbox #officeAddress [style]="{'width': '100%'}" [(ngModel)]="member && member.OfficeAddress" name="OfficeAddress">
+            </rz-textbox>
+          </div>
+        </div>
+        <div [ngStyle]="{'marginBottom': '1rem'}" class="row">
+          <div class="col-md-3">
+            <rz-label #mobileNumber1Label component="MobileNumber1" [style]="{'width': '100%'}" text="Mobile Number 1">
+            </rz-label>
+          </div>
+          <div class="col-md-9">
+            <rz-textbox #mobileNumber1 [maxLength]="50" [style]="{'display': 'block', 'width': '100%'}" [(ngModel)]="member && member.MobileNumber1" name="MobileNumber1">
+            </rz-textbox>
+            <rz-required-validator #mobileNumber1RequiredValidator [component]="mobileNumber1" [style]="{'position': 'absolute'}" text="MobileNumber1 is required">
+            </rz-required-validator>
+          </div>
+        </div>
+        <div [ngStyle]="{'marginBottom': '1rem'}" class="row">
+          <div class="col-md-3">
+            <rz-label #whatsappNumberLabel component="WhatsappNumber" [style]="{'width': '100%'}" text="Whatsapp Number">
+            </rz-label>
+          </div>
+          <div class="col-md-9">
+            <rz-textbox #whatsappNumber [maxLength]="50" [style]="{'width': '100%'}" [(ngModel)]="member && member.WhatsappNumber" name="WhatsappNumber">
+            </rz-textbox>
+          </div>
+        </div>
+        <div [ngStyle]="{'marginBottom': '1rem'}" class="row">
+          <div class="col-md-3">
+            <rz-label #emailLabel component="Email" [style]="{'width': '100%'}" text="Email">
+            </rz-label>
+          </div>
+          <div class="col-md-9">
+            <rz-textbox #email [maxLength]="50" [style]="{'width': '100%'}" [(ngModel)]="member && member.Email" name="Email">
+            </rz-textbox>
+            <rz-email-validator #emailValidator0 [component]="email" text="Enter valid email">
+            </rz-email-validator>
+          </div>
+        </div>
+        <div [ngStyle]="{'marginBottom': '1rem'}" class="row">
+          <div class="col-md-3">
+            <rz-label #memberPhotoLabel component="MemberPhoto" [style]="{'width': '100%'}" text="Member Photo">
+            </rz-label>
+          </div>
+          <div class="col-md-9">
+            <rz-file-input #memberPhoto [(ngModel)]="member && member.MemberPhoto" chooseText="Choose" name="MemberPhoto">
+            </rz-file-input>
+          </div>
+        </div>
+        <div [ngStyle]="{'marginBottom': '1rem'}" class="row">
+          <div class="col-md-3">
+            <rz-label #currentPositionIdLabel component="CurrentPositionID" [style]="{'width': '100%'}" text="Member Position">
+            </rz-label>
+          </div>
+          <div class="col-md-9">
+            <rz-dropdown #currentPositionId [data]="getMemberPositionsResult" emptyFilterText="No results found" multipleItemsSelectedText="{0} items selected" placeholder="Choose Position" [style]="{'width': '100%'}" textProperty="PositionName" [(ngModel)]="member && member.CurrentPositionID" valueProperty="PositionID" name="CurrentPositionID">
+            </rz-dropdown>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col offset-sm-3">
+            <rz-button #button3 buttonStyle="primary" buttonType="submit" icon="save" text="Save">
+            </rz-button>
+            <rz-button #button4 buttonStyle="light" [style]="{'marginLeft': '1rem'}" text="Cancel" (click)="button4Click($event)">
+            </rz-button>
+          </div>
+        </div>
+      </rz-template-form>
+    </div>
+  </div>
+</rz-content>

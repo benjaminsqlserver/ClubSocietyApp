@@ -1,0 +1,52 @@
+<rz-content #content1 container="main">
+  <div class="row">
+    <div class="col-md-12">
+      <rz-template-form #form0 (submit)="form0Submit($event)">
+        <div [ngStyle]="{'marginBottom': '1rem'}" class="row">
+          <div class="col-md-3">
+            <rz-label #memberIdLabel component="MemberID" [style]="{'width': '100%'}" text="Member">
+            </rz-label>
+          </div>
+          <div class="col-md-9">
+            <rz-dropdown #memberId [allowClear]="true" [allowFiltering]="true" [data]="getMemberListProcsResult" emptyFilterText="No results found" multipleItemsSelectedText="{0} items selected" placeholder="Choose Member" [style]="{'display': 'block', 'width': '100%'}" textProperty="FullName" valueProperty="MemberID" name="MemberID">
+            </rz-dropdown>
+            <rz-required-validator #memberIdRequiredValidator [component]="memberId" [style]="{'position': 'absolute'}" text="Member is required">
+            </rz-required-validator>
+          </div>
+        </div>
+        <div [ngStyle]="{'marginBottom': '1rem'}" class="row">
+          <div class="col-md-3">
+            <rz-label #contributionDateLabel component="ContributionDate" [style]="{'width': '100%'}" text="Contribution Date">
+            </rz-label>
+          </div>
+          <div class="col-md-9">
+            <rz-datepicker #contributionDate [style]="{'display': 'block', 'width': '100%'}" name="ContributionDate">
+            </rz-datepicker>
+            <rz-required-validator #contributionDateRequiredValidator [component]="contributionDate" [style]="{'position': 'absolute'}" text="ContributionDate is required">
+            </rz-required-validator>
+          </div>
+        </div>
+        <div [ngStyle]="{'marginBottom': '1rem'}" class="row">
+          <div class="col-md-3">
+            <rz-label #amountContributedLabel component="AmountContributed" [style]="{'width': '100%'}" text="Amount Contributed">
+            </rz-label>
+          </div>
+          <div class="col-md-9">
+            <rz-numeric #amountContributed [style]="{'display': 'block', 'width': '100%'}" name="AmountContributed">
+            </rz-numeric>
+            <rz-required-validator #amountContributedRequiredValidator [component]="amountContributed" [style]="{'position': 'absolute'}" text="AmountContributed is required">
+            </rz-required-validator>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col offset-sm-3">
+            <rz-button #button1 buttonStyle="primary" buttonType="submit" icon="save" text="Save">
+            </rz-button>
+            <rz-button #button2 buttonStyle="light" [style]="{'marginLeft': '1rem'}" text="Cancel" (click)="button2Click($event)">
+            </rz-button>
+          </div>
+        </div>
+      </rz-template-form>
+    </div>
+  </div>
+</rz-content>

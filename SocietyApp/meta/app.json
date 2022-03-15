@@ -1,0 +1,63 @@
+{
+  "dataSources": [
+    "ConData"
+  ],
+  "generator": "@radzen/angular-generator",
+  "https": false,
+  "layouts": [
+    "Login",
+    "Main"
+  ],
+  "logo": "",
+  "name": "SocietyApp",
+  "navigation": [
+    "Genders",
+    "Members",
+    "Member Contributions",
+    "Member Positions"
+  ],
+  "pages": [
+    "Genders",
+    "Add Gender",
+    "Edit Gender",
+    "Members",
+    "Add Member",
+    "Edit Member",
+    "Member Contributions",
+    "Add Member Contribution",
+    "Edit Member Contribution",
+    "Member Positions",
+    "Add Member Position",
+    "Edit Member Position",
+    "Application Users",
+    "Application Roles",
+    "Register Application User",
+    "Login",
+    "Add Application User",
+    "Edit Application User",
+    "Add Application Role",
+    "Profile",
+    "Unauthorized"
+  ],
+  "security": {
+    "autoGeneratePages": true,
+    "dataSource": "ConData",
+    "duration": 15,
+    "emailConfirmation": false,
+    "layout": "Main",
+    "loginLayout": "Login",
+    "loginPage": "Login",
+    "provider": "default",
+    "sessionRefresh": false,
+    "smtpFrom": "",
+    "smtpPassword": "",
+    "smtpSSL": false,
+    "smtpServer": "",
+    "smtpUser": ""
+  },
+  "serverLang": "cs",
+  "serverProject": true,
+  "serverVersion": "6",
+  "startPage": "Members",
+  "theme": "ultima/cyan"
+}
